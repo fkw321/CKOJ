@@ -25,9 +25,10 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public Result login() {
+    public Result login(@RequestParam("phoneNumber") String phone, @RequestParam("verificationCode") String code) {
         // TODO 实现登录功能
         log.info("实现登录功能");
+        userService.login();
         return Result.ok();
     }
 }

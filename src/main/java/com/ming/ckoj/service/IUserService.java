@@ -8,4 +8,6 @@ public interface IUserService extends IService<User> {
 
 
     Result sendCode(String phone);
+
+    void login();
 }

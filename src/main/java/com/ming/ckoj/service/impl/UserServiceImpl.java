@@ -37,5 +37,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         return Result.ok();
     }
 
+    @Override
+    public void login() {
+
+
+    }
+
 
 }
