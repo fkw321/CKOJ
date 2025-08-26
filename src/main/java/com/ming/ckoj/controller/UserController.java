@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Slf4j
-@RequestMapping("/api/user")
+@RequestMapping("/user")
 
 public class UserController {
 
@@ -23,15 +23,28 @@ public class UserController {
      */
     @PostMapping("/send-code")
     public Result sendCode(@RequestParam("phoneNumber") String phone) {
-        log.info("发送验证码成功!");
+        log.info("发送验证码中");
         // TODO 发送短信验证码并保存验证码
         return userService.sendCode(phone);
     }
 
+    /**
+     * 用户登录注册
+     * @param loginFormDTO
+     * @return
+     */
     @PostMapping("/login")
     public Result login(@RequestBody LoginFormDTO loginFormDTO) {
         // TODO 实现登录功能
         log.info("实现登录功能");
         return  userService.login(loginFormDTO);
+    }
+
+    /**
+     * 用户个人信息
+     */
+    @GetMapping("/profile")
+    public Result me() {
+        return userService.me();
     }
 }
