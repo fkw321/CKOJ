@@ -18,23 +18,26 @@ import static com.ming.ckoj.utils.RedisConstants.LOGIN_USER_TTL;
 @Slf4j
 public class RefreshTokenInterceptor implements HandlerInterceptor {
     private StringRedisTemplate stringRedisTemplate;
+
     public RefreshTokenInterceptor(StringRedisTemplate stringRedisTemplate) {
         this.stringRedisTemplate = stringRedisTemplate;
     }
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+//        if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
+//            return true; // 直接放行 OPTIONS 请求
+//        }
 //        获得token
-        String token = request.getHeader("authorization");
-        log.info(token);
+        String token = request.getHeader("Authorization");
+        log.info("拦截器preHandle的token:"+token);
         if (StrUtil.isBlank(token)) {
-//            不存在token拦截
-            return false;
+            return true;
         }
         String key = LOGIN_USER_KEY + token;
         Map<Object, Object> userMap = stringRedisTemplate.opsForHash().entries(key);
         if (userMap.isEmpty()) {
-            return false;
+            return true;
         }
         UserDTO userDTO = BeanUtil.fillBeanWithMap(userMap, new UserDTO(), false);
         UserHolder.saveUser(userDTO);

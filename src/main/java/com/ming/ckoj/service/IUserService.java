@@ -13,4 +13,6 @@ public interface IUserService extends IService<User> {
     Result login(LoginFormDTO loginFormDTO);
 
     Result me();
+
+    void logout(String token);
 }

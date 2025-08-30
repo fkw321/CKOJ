@@ -78,7 +78,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         String tokenKey = LOGIN_USER_KEY + token;
         stringRedisTemplate.opsForHash().putAll(tokenKey, userMap);
         stringRedisTemplate.expire(tokenKey, LOGIN_USER_TTL, TimeUnit.DAYS);
-        log.info(token);
+        log.info("生成的token："+token);
         return Result.ok(token);
     }
 
@@ -90,6 +90,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         UserInfo userInfo = userInfoService.getById(userId);
         UserInfoDTO userInfoDTO = BeanUtil.copyProperties(userInfo, UserInfoDTO.class);
         return Result.ok(userInfoDTO);
+    }
+
+    @Override
+    public void logout(String token) {
+        String key = LOGIN_USER_KEY + token;
+        stringRedisTemplate.delete(key);
     }
 
     public User createUserWithPhone(String phone) {

@@ -1,5 +1,6 @@
 package com.ming.ckoj.config;
 
+import com.ming.ckoj.utils.LoginInterceptor;
 import com.ming.ckoj.utils.RefreshTokenInterceptor;
 import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Configuration;
@@ -15,20 +16,12 @@ public class MvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+        String[] paths = {"/user/login", "/user/send-code"};
         //        token刷新
-        registry.addInterceptor(new RefreshTokenInterceptor(stringRedisTemplate));
-//        registry.addInterceptor(new LoginInterceptor(stringRedisTemplate))
-//                .addPathPatterns("/**")
-//                .excludePathPatterns(
-//                        "/",
-//                        "/error",
-//                        "/favicon.ico",
-//                        "/**/*.png",
-//                        "/**/*.jpg",
-//                        "/**/*.jpeg",
-//                        "/**/*.gif",
-//                        "/**/*.svg",
-//                        "/**/*.css",
-//                )
+        registry.addInterceptor(new RefreshTokenInterceptor(stringRedisTemplate))
+                .excludePathPatterns(paths);
+        registry.addInterceptor(new LoginInterceptor())
+                .addPathPatterns("/**")
+                .excludePathPatterns(paths);
     }
 }

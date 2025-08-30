@@ -4,7 +4,7 @@ import com.ming.ckoj.dto.LoginFormDTO;
 import com.ming.ckoj.dto.Result;
 import com.ming.ckoj.service.IUserService;
 import jakarta.annotation.Resource;
-import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.web.bind.annotation.*;
@@ -47,4 +47,23 @@ public class UserController {
     public Result me() {
         return userService.me();
     }
+
+    /**
+     * 登出功能
+     *
+     * @return 无
+     */
+    @PostMapping("/logout")
+    public Result logout(HttpServletRequest request) {
+        // 从请求头中获取token
+        String token = request.getHeader("Authorization");
+        log.info("token:"+token);
+        if (token != null && !token.isEmpty()) {
+            // 删除Redis中的用户信息
+            userService.logout(token);
+        }
+        return Result.ok();
+    }
+
+
 }
