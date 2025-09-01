@@ -3,7 +3,7 @@ package com.ming.ckoj.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ming.ckoj.dto.LoginFormDTO;
 import com.ming.ckoj.dto.Result;
-import com.ming.ckoj.entity.User;
+import com.ming.ckoj.pojo.entity.User;
 
 public interface IUserService extends IService<User> {
 
@@ -14,5 +14,7 @@ public interface IUserService extends IService<User> {
 
     Result me();
 
-    void logout(String token);
+    Result logout(String token);
+
+    Result info();
 }

@@ -1,17 +1,9 @@
 package com.ming.ckoj.utils;
 
-import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.util.StrUtil;
 import com.ming.ckoj.dto.UserDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.HandlerInterceptor;
-
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
-import static com.ming.ckoj.utils.RedisConstants.LOGIN_USER_KEY;
-import static com.ming.ckoj.utils.RedisConstants.LOGIN_USER_TTL;
 
 public class LoginInterceptor implements HandlerInterceptor {
 

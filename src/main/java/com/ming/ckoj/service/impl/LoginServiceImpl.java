@@ -8,14 +8,10 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ming.ckoj.dto.LoginFormDTO;
 import com.ming.ckoj.dto.Result;
 import com.ming.ckoj.dto.UserDTO;
-import com.ming.ckoj.dto.UserInfoDTO;
 import com.ming.ckoj.pojo.entity.User;
-import com.ming.ckoj.pojo.entity.UserInfo;
 import com.ming.ckoj.mapper.UserMapper;
-import com.ming.ckoj.service.IUserInfoService;
-import com.ming.ckoj.service.IUserService;
+import com.ming.ckoj.service.ILoginService;
 import com.ming.ckoj.utils.RegexUtils;
-import com.ming.ckoj.utils.UserHolder;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -30,13 +26,10 @@ import static com.ming.ckoj.utils.SystemConstants.USER_NIKE_NAME_PREFIX;
 
 @Slf4j
 @Service
-public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
-
+public class LoginServiceImpl extends ServiceImpl<UserMapper, User> implements ILoginService {
     @Resource
     private StringRedisTemplate stringRedisTemplate;
 
-    @Resource
-    private IUserInfoService userInfoService;
 
     @Override
     public Result sendCode(String phone) {
@@ -78,18 +71,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         String tokenKey = LOGIN_USER_KEY + token;
         stringRedisTemplate.opsForHash().putAll(tokenKey, userMap);
         stringRedisTemplate.expire(tokenKey, LOGIN_USER_TTL, TimeUnit.DAYS);
-        log.info("生成的token："+token);
+        log.info("生成的token：" + token);
         return Result.ok(token);
-    }
-
-    @Override
-    public Result me() {
-//        userInfoService.getById(getCurrentUser().getId());
-        UserDTO user = UserHolder.getUser();
-        Long userId = user.getId();
-        UserInfo userInfo = userInfoService.getById(userId);
-        UserInfoDTO userInfoDTO = BeanUtil.copyProperties(userInfo, UserInfoDTO.class);
-        return Result.ok(userInfoDTO);
     }
 
     @Override
@@ -98,15 +81,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         stringRedisTemplate.delete(key);
         return Result.ok();
 
-    }
-
-    /**
-     * 用户通过题目等信息
-     * @return
-     */
-    @Override
-    public Result info() {
-        return Result.ok();
     }
 
     public User createUserWithPhone(String phone) {

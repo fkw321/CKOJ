@@ -16,7 +16,7 @@ public class MvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        String[] paths = {"/user/login", "/user/send-code"};
+        String[] paths = {"/user/login/login", "/user/login/send-code"};
         //        token刷新
         registry.addInterceptor(new RefreshTokenInterceptor(stringRedisTemplate))
                 .excludePathPatterns(paths);
