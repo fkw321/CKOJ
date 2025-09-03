@@ -1,7 +1,7 @@
 package com.ming.ckoj.service;
 
-import com.ming.ckoj.dto.LoginFormDTO;
-import com.ming.ckoj.dto.Result;
+import com.ming.ckoj.pojo.dto.Result;
+import com.ming.ckoj.pojo.dto.LoginFormDTO;
 
 public interface ILoginService {
     /**

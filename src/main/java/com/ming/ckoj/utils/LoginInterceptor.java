@@ -1,6 +1,6 @@
 package com.ming.ckoj.utils;
 
-import com.ming.ckoj.dto.UserDTO;
+import com.ming.ckoj.pojo.dto.UserDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.HandlerInterceptor;

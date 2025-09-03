@@ -2,9 +2,9 @@ package com.ming.ckoj.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.ming.ckoj.dto.Result;
-import com.ming.ckoj.dto.UserDTO;
-import com.ming.ckoj.dto.UserInfoDTO;
+import com.ming.ckoj.pojo.dto.Result;
+import com.ming.ckoj.pojo.dto.UserDTO;
+import com.ming.ckoj.pojo.dto.UserInfoDTO;
 import com.ming.ckoj.pojo.entity.User;
 import com.ming.ckoj.pojo.entity.UserInfo;
 import com.ming.ckoj.mapper.UserMapper;

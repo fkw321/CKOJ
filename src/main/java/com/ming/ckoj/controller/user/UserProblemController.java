@@ -1,6 +1,6 @@
 package com.ming.ckoj.controller.user;
 
-import com.ming.ckoj.dto.Result;
+import com.ming.ckoj.pojo.dto.Result;
 import com.ming.ckoj.service.IUserProblemService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;

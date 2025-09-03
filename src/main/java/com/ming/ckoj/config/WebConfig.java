@@ -13,7 +13,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOriginPatterns("http://localhost:5173", "https://s.apifox.cn/c983afb0-b124-4bb2-9935-929a59f6ff7e/336224494e0")  // Vue 前端地址
+                .allowedOriginPatterns("http://localhost:5173", "http://localhost:5174","https://s.apifox.cn/c983afb0-b124-4bb2-9935-929a59f6ff7e/336224494e0")  // Vue 前端地址
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true)

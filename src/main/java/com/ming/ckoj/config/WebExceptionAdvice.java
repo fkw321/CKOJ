@@ -1,6 +1,6 @@
 package com.ming.ckoj.config;
 
-import com.ming.ckoj.dto.Result;
+import com.ming.ckoj.pojo.dto.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

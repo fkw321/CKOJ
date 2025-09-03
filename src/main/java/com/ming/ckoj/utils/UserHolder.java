@@ -1,6 +1,6 @@
 package com.ming.ckoj.utils;
 
-import com.ming.ckoj.dto.UserDTO;
+import com.ming.ckoj.pojo.dto.UserDTO;
 
 public class UserHolder {
     private static final ThreadLocal<UserDTO> tl = new ThreadLocal<>();

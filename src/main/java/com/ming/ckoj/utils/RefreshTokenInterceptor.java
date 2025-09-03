@@ -2,7 +2,7 @@ package com.ming.ckoj.utils;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.StrUtil;
-import com.ming.ckoj.dto.UserDTO;
+import com.ming.ckoj.pojo.dto.UserDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
